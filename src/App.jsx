@@ -3,7 +3,6 @@ import mqtt from "mqtt";
 import "./App.css";
 
 // ================= MQTT =================
-
 const client = mqtt.connect(
   "wss://ba1eb9a14c704614ab075e35893dee5d.s1.eu.hivemq.cloud:8884/mqtt",
   {
@@ -21,13 +20,9 @@ function App() {
       texto: mensaje,
       timestamp: Date.now(),
     };
-
     client.publish("smartbox/eventos", JSON.stringify(data));
-
     console.log("Mensaje enviado");
-
     console.log(data);
-
     alert("Mensaje enviado al broker MQTT");
   };
 
@@ -36,19 +31,44 @@ function App() {
       <div className="container">
         <h1 className="title">Smart Notification Box</h1>
 
-        <p className="subtitle">MQTT Cloud Control</p>
+        <div className="estado">
+          <div className="dot"></div>
+          <span className="estado-texto">Conectado</span>
+        </div>
 
         <div className="card">
           <label>Mensaje</label>
-
           <textarea
             placeholder="Escribe un mensaje..."
             value={mensaje}
             onChange={(e) => setMensaje(e.target.value)}
           />
+          <button onClick={enviarMensaje}>Enviar Mensaje</button>
         </div>
 
-        <button onClick={enviarMensaje}>Enviar</button>
+        <div className="card">
+          <label>Audio</label>
+          <select>
+            <option value="1">Audio 1</option>
+            <option value="2">Audio 2</option>
+            <option value="3">Audio 3</option>
+          </select>
+          <button>Reproducir Audio</button>
+        </div>
+
+        <div className="card">
+          <label>Imagen</label>
+          <select>
+            <option value="1">Imagen 1</option>
+            <option value="2">Imagen 2</option>
+            <option value="3">Imagen 3</option>
+          </select>
+          <button>Mostrar Imagen</button>
+        </div>
+
+        <div className="card">
+          <button>Abrir Tapa</button>
+        </div>
       </div>
     </div>
   );
