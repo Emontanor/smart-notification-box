@@ -14,16 +14,61 @@ const client = mqtt.connect(
 function App() {
   const [mensaje, setMensaje] = useState("");
 
+  //const enviarMensaje = () => {
+  //  const data = {
+  //    tipo: "mensaje",
+  //    texto: mensaje,
+  //    timestamp: Date.now(),
+  //  };
+  //  client.publish("smartbox/eventos", JSON.stringify(data));
+  //  console.log("Mensaje enviado");
+  //  console.log(data);
+  //  alert("Mensaje enviado al broker MQTT");
+  //};
+
   const enviarMensaje = () => {
+
+    // bitmap 16x16 hardcodeado
+    const bitmap = [
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+      0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+      1,0,0,0,1,1,0,0,0,0,1,1,0,0,0,1,
+      1,0,0,0,1,1,0,0,0,0,1,1,0,0,0,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+      1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,
+      1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,
+      1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,
+      1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+      0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+      0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    ];
+
     const data = {
-      tipo: "mensaje",
-      texto: mensaje,
+
+      mensaje: "PRUEBA DE FUNCIONAMIENTO",
+
+      bitmap: bitmap,
+
+      audio: 1,
+
       timestamp: Date.now(),
     };
-    client.publish("smartbox/eventos", JSON.stringify(data));
+
+    client.publish(
+      "smartbox/eventos",
+      JSON.stringify(data)
+    );
+
     console.log("Mensaje enviado");
+
     console.log(data);
-    alert("Mensaje enviado al broker MQTT");
+
+    alert("Mensaje de prueba enviado");
   };
 
   return (
