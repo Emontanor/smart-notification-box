@@ -13,7 +13,7 @@ const MQTT_OPTIONS = {
 const TOPIC = "smartbox/eventos";
 const GRID_SIZE = 16;
 const TOTAL_PIXELS = GRID_SIZE * GRID_SIZE;
-const MESSAGE_LIMIT = 30;
+const MESSAGE_LIMIT = 60;
 
 const SONGS = [
   "Que vuelta vox",
